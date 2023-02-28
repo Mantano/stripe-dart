@@ -60,10 +60,10 @@ class Client {
       return processResponse(response);
     } on DioError catch (e) {
       var message = e.message;
-      if (e.response?.data != null) {
+      if (message != null && e.response?.data != null) {
         message += '${e.response!.data}';
       }
-      throw InvalidRequestException(message);
+      throw InvalidRequestException(message ?? 'Unknown error');
     }
   }
 
